@@ -22,7 +22,8 @@ from improved_diffusion.script_util import (
     add_dict_to_argparser,
     args_to_dict,
 )
-sys.path.insert(0, 'diffusion_lm/transformers/examples/pytorch/language-modeling')
+#sys.path.insert(0, 'diffusion_lm/transformers/examples/pytorch/language-modeling')
+sys.path.insert(0, '/kaggle/working/Diffusion-LM/transformers/examples/pytorch/language-modeling')
 from custom_trainer import Classifier_GPT2, Classifier_Times, Classifier_POS, Classifier_Tree
 from infill_util import langevin_fn3, get_score, langevin_fn3_compose, langevin_fn1, langevin_fn4, langevin_fn_tree, langevin_fn_length
 from spacy.lang.en import English
