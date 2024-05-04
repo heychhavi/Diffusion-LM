@@ -315,9 +315,11 @@ def main():
                 #     'predictability/diff_models/e2e-tgt-tree_e=20_b=32_m=bert-base-uncased_'
                 #     'wikitext-103-raw-v1_101_wp_full_multi16_v2').cuda()
                 model_control = Classifier_Tree.from_pretrained(
-                    'predictability/diff_models/e2e-tgt-tree_e=20_b=32_m=bert-base-uncased_'
+                    'predictability/diff_models/roc_e=20_b=32_m=bert-base-uncased_'
                     'wikitext-103-raw-v1_101_wp_full_multi16_cat').cuda()
-
+                #model_control = Classifier_Tree.from_pretrained(
+                #    'predictability/diff_models/e2e-tgt-tree_e=20_b=32_m=bert-base-uncased_'
+                #    'wikitext-103-raw-v1_101_wp_full_multi16_cat').cuda()
                 # print(model_control)
 
                 import benepar
