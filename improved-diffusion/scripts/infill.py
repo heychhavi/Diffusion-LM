@@ -315,7 +315,7 @@ def main():
                 #     'predictability/diff_models/e2e-tgt-tree_e=20_b=32_m=bert-base-uncased_'
                 #     'wikitext-103-raw-v1_101_wp_full_multi16_v2').cuda()
                 model_control = Classifier_Tree.from_pretrained(
-                    'predictability/diff_models/roc_e=20_b=32_m=bert-base-uncased_'
+                    '/kaggle/working/Diffusion-LM/classifier_models/roc_e=1_b=10_m=bert-base-uncased_'
                     'wikitext-103-raw-v1_101_wp_full_multi16_cat').cuda()
                 #model_control = Classifier_Tree.from_pretrained(
                 #    'predictability/diff_models/e2e-tgt-tree_e=20_b=32_m=bert-base-uncased_'
