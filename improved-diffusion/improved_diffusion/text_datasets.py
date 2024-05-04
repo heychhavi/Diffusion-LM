@@ -206,10 +206,10 @@ def helper_tokenize_stream(sentence_lst, vocab_dict, model, seqlen, data_args, p
             group_texts,
             batched=True,
             num_proc=data_args.preprocessing_num_workers,
-            #load_from_cache_file=not data_args.overwrite_cache,
-            load_from_cache_file = not getattr(data_args, 'overwrite_cache', False)
+            load_from_cache_file = not getattr(data_args, 'overwrite_cache', False),
             desc=f"Grouping texts in chunks of {block_size}",
         )
+        ##load_from_cache_file=not data_args.overwrite_cache,
     else:
         def pad_function(group_lst):
             max_length = seqlen
