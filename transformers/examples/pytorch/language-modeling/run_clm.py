@@ -113,7 +113,7 @@ class ModelArguments:
         metadata={"help": "blcok or pad"},
     )
     roc_train: Optional[str] = field(
-        default='/juice/scr/xlisali/diffusion_lm/ROCstory',
+        default='/kaggle/working/Diffusion-LM/datasets/ROCstory/',
         metadata={"help": "roc story path"},
     )
     wiki_train: Optional[str] = field(
