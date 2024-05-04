@@ -604,7 +604,7 @@ def main():
 
         if model_args.experiment.startswith('roc'):
             tokenizer = load_tokenizer('roc', 'random',
-                                       '/u/scr/nlp/xlisali/predictability/diffusion_models_v7/diff_roc_pad_rand16_transformer_lr0.0001_0.0_2000_sqrt_Lsimple_h128_s2_d0.1_sd108_xstart')
+                                       '/predictability/diffusion_models_v7/diff_roc_pad_rand16_transformer_lr0.0001_0.0_2000_sqrt_Lsimple_h128_s2_d0.1_sd108_xstart')
             vocab = {v: k for k, v in tokenizer.items()}
             print(len(tokenizer), len(vocab), 'loaded vocabs')
 
