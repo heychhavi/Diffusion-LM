@@ -604,7 +604,7 @@ def main():
 
         if model_args.experiment.startswith('roc'):
             tokenizer = load_tokenizer('roc', 'random',
-                                       '/kaggle/working/Diffusion-LM/improved-diffusion/diffusion_models/diff_roc_block_rand16_transformer_lr0.0001_0.0_200_sqrt_Lsimple_h128_s2_d0.1_sd102_xstart_roc')
+                                       '/kaggle/working/diffusion_models/diff_roc_block_rand16_transformer_lr0.0001_0.0_200_sqrt_Lsimple_h128_s2_d0.1_sd102_xstart_roc')
             vocab = {v: k for k, v in tokenizer.items()}
             print(len(tokenizer), len(vocab), 'loaded vocabs')
 
