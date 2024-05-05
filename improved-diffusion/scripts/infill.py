@@ -716,7 +716,7 @@ def main():
 def create_argparser():
     defaults = dict(
         data_dir="", clip_denoised=False, use_ddim=False, eta=1.0, num_samples=50, batch_size=1, model_path="",
-        out_dir="diffusion_lm/improved_diffusion/out_gen",
+        out_dir="/kaggle/working/Diffusion-LM/improved-diffusion/improved_diffusion/",
         emb_scale_factor=1.0, split='train', debug_path='', eval_task_='infill',
         partial_seq="", partial_seq_file="", verbose='yes', tgt_len=15, t_merge=200, interp_coef=0.5, notes='',
         start_idx=0, end_idx=0,
