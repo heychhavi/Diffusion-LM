@@ -332,9 +332,22 @@ def get_corpus_rocstory(data_args, model, image_size, padding_mode='block',
 
             with open(path, 'r') as roc_reader:
                 for row in roc_reader:
-                    sentences = json.loads(row)[0].strip()
-                    word_lst = [x.text for x in tokenizer(sentences)]
-                    sentence_lst.append(word_lst)
+                    try:
+                        sentences = json.loads(row)[0].strip()
+                        word_lst = [x.text for x in tokenizer(sentences)]
+                        sentence_lst.append(word_lst)
+                    except json.JSONDecodeError:
+                        # Attempt to handle multiple JSON objects or extra data
+                        rows = row.strip().split('\n')
+                        for r in rows:
+                            try:
+                                sentences = json.loads(r)[0].strip()
+                                word_lst = [x.text for x in tokenizer(sentences)]
+                                sentence_lst.append(word_lst)
+                            except json.JSONDecodeError:
+                                print(f"Skipping invalid JSON row: {r}")
+
+            print(sentence_lst[:2])
 
             # with open(data_args.roc_train, 'r') as csvfile:
             #     roc_reader = csv.reader(csvfile) #delimiter=' ', quotechar='|')
