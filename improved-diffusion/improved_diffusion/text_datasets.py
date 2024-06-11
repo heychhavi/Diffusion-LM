@@ -13,7 +13,7 @@ import torch
 from collections import Counter, defaultdict
 from functools import partial
 from itertools import chain
-import ast
+
 
 def load_data_text(
     *, data_dir, batch_size, image_size, class_cond=False, deterministic=False, data_args=None, 
@@ -206,10 +206,9 @@ def helper_tokenize_stream(sentence_lst, vocab_dict, model, seqlen, data_args, p
             group_texts,
             batched=True,
             num_proc=data_args.preprocessing_num_workers,
-            load_from_cache_file = not getattr(data_args, 'overwrite_cache', False),
+            load_from_cache_file=not data_args.overwrite_cache,
             desc=f"Grouping texts in chunks of {block_size}",
         )
-        ## load_from_cache_file=not data_args.overwrite_cache,
     else:
         def pad_function(group_lst):
             max_length = seqlen
@@ -332,27 +331,9 @@ def get_corpus_rocstory(data_args, model, image_size, padding_mode='block',
 
             with open(path, 'r') as roc_reader:
                 for row in roc_reader:
-                    try:
-                        # Evaluate the row to get the list and then access the first element
-                        sentences_list = ast.literal_eval(row)
-                        if isinstance(sentences_list, list) and len(sentences_list) > 0:
-                            sentences = sentences_list[0].strip()
-                            word_lst = [x.text for x in tokenizer(sentences)]
-                            sentence_lst.append(word_lst)
-                    except json.JSONDecodeError:
-                        # Attempt to handle multiple JSON objects or extra data
-                        rows = row.strip().split('\n')
-                        for r in rows:
-                            try:
-                                sentences_list = ast.literal_eval(row)
-                                if isinstance(sentences_list, list) and len(sentences_list) > 0:
-                                    sentences = sentences_list[0].strip()
-                                    word_lst = [x.text for x in tokenizer(sentences)]
-                                    sentence_lst.append(word_lst)
-                            except json.JSONDecodeError:
-                                print(f"Skipping invalid JSON row: {r}")
-
-            print(sentence_lst[:2])
+                    sentences = json.loads(row)[0].strip()
+                    word_lst = [x.text for x in tokenizer(sentences)]
+                    sentence_lst.append(word_lst)
 
             # with open(data_args.roc_train, 'r') as csvfile:
             #     roc_reader = csv.reader(csvfile) #delimiter=' ', quotechar='|')
