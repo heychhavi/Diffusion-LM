@@ -333,7 +333,10 @@ def get_corpus_rocstory(data_args, model, image_size, padding_mode='block',
             with open(path, 'r') as roc_reader:
                 for row in roc_reader:
                     try:
-                        sentences = ast.literal_eval(row)[0].strip()
+                        # Evaluate the row to get the list and then access the first element
+                        sentences_list = ast.literal_eval(row)
+                        if isinstance(sentences_list, list) and len(sentences_list) > 0:
+                            sentences = sentences_list[0].strip()
                         word_lst = [x.text for x in tokenizer(sentences)]
                         sentence_lst.append(word_lst)
                     except json.JSONDecodeError:
@@ -341,7 +344,9 @@ def get_corpus_rocstory(data_args, model, image_size, padding_mode='block',
                         rows = row.strip().split('\n')
                         for r in rows:
                             try:
-                                sentences = ast.literal_eval(row)[0].strip()
+                                sentences_list = ast.literal_eval(row)
+                                if isinstance(sentences_list, list) and len(sentences_list) > 0:
+                                    sentences = sentences_list[0].strip()
                                 word_lst = [x.text for x in tokenizer(sentences)]
                                 sentence_lst.append(word_lst)
                             except json.JSONDecodeError:
