@@ -337,8 +337,8 @@ def get_corpus_rocstory(data_args, model, image_size, padding_mode='block',
                         sentences_list = ast.literal_eval(row)
                         if isinstance(sentences_list, list) and len(sentences_list) > 0:
                             sentences = sentences_list[0].strip()
-                        word_lst = [x.text for x in tokenizer(sentences)]
-                        sentence_lst.append(word_lst)
+                            word_lst = [x.text for x in tokenizer(sentences)]
+                            sentence_lst.append(word_lst)
                     except json.JSONDecodeError:
                         # Attempt to handle multiple JSON objects or extra data
                         rows = row.strip().split('\n')
@@ -347,8 +347,8 @@ def get_corpus_rocstory(data_args, model, image_size, padding_mode='block',
                                 sentences_list = ast.literal_eval(row)
                                 if isinstance(sentences_list, list) and len(sentences_list) > 0:
                                     sentences = sentences_list[0].strip()
-                                word_lst = [x.text for x in tokenizer(sentences)]
-                                sentence_lst.append(word_lst)
+                                    word_lst = [x.text for x in tokenizer(sentences)]
+                                    sentence_lst.append(word_lst)
                             except json.JSONDecodeError:
                                 print(f"Skipping invalid JSON row: {r}")
 
