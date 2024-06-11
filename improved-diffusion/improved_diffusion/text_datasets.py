@@ -13,7 +13,7 @@ import torch
 from collections import Counter, defaultdict
 from functools import partial
 from itertools import chain
-
+import ast
 
 def load_data_text(
     *, data_dir, batch_size, image_size, class_cond=False, deterministic=False, data_args=None, 
@@ -333,7 +333,7 @@ def get_corpus_rocstory(data_args, model, image_size, padding_mode='block',
             with open(path, 'r') as roc_reader:
                 for row in roc_reader:
                     try:
-                        sentences = json.loads(row)[0].strip()
+                        sentences = ast.literal_eval(row)[0].strip()
                         word_lst = [x.text for x in tokenizer(sentences)]
                         sentence_lst.append(word_lst)
                     except json.JSONDecodeError:
@@ -341,7 +341,7 @@ def get_corpus_rocstory(data_args, model, image_size, padding_mode='block',
                         rows = row.strip().split('\n')
                         for r in rows:
                             try:
-                                sentences = json.loads(r)[0].strip()
+                                sentences = ast.literal_eval(row)[0].strip()
                                 word_lst = [x.text for x in tokenizer(sentences)]
                                 sentence_lst.append(word_lst)
                             except json.JSONDecodeError:
