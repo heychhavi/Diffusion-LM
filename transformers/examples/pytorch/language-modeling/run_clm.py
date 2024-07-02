@@ -906,7 +906,7 @@ def main():
 
             filename = model_args.init_emb  # '/u/scr/nlp/xlisali/predictability/diffusion_models_v3/diff_e2e-tgt_block_rand16_transformer_lr0.0001_2000_cosine_Lsimple_h128_s2_sd101'
             path_save = '{}/random_emb.torch'.format(filename)
-            path_learned = '{}/ema_0.9999_200000.pt'.format(filename)
+            path_learned = '{}/ema_0.9999_000200.pt'.format(filename)
             if model_args.experiment == 'e2e-tgt-pos' and model_args.learned_emb == 'no':
                 model.transformer.embeddings.word_embeddings.load_state_dict(torch.load(path_save))
                 model.transformer.embeddings.word_embeddings.weight.requires_grad = False
