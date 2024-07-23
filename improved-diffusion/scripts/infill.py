@@ -753,7 +753,7 @@ def eval(args):
     if args.modality == 'e2e-tgt':
         model_name_path = "predictability/diff_models/e2e-tgt_e=15_b=20_m=gpt2_wikitext-103-raw-v1_101_None"
 
-        COMMAND = f"python scripts/ppl_under_ar.py " \
+        COMMAND = f"python /kaggle/working/Diffusion-LM/improved-diffusion/scripts/ppl_under_ar.py " \
               f"--model_path {args.model_path} " \
               f"--modality {args.modality}  --experiment random " \
               f"--model_name_or_path {model_name_path} " \
