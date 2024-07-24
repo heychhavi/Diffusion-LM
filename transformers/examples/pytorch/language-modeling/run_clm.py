@@ -1057,6 +1057,13 @@ def main():
                 doc = nlp(sent_full)
                 doc_token_pos = [(token.text, token.pos_,) for token in doc]
                 len_lst = [len(seq) for seq in examples['text']]
+
+                # Debug prints to check alignment
+                print("Original Sentences:", examples['text'])
+                print("Parsed Tokens and POS:", doc_token_pos)
+                print("Token Lengths:", len_lst)
+
+                #assert sum(len_lst) == len(doc_token_pos)
                 # print(sum(len_lst),  len(doc_token_pos))
                 assert sum(len_lst) == len(doc_token_pos)
                 pos_lst = []
