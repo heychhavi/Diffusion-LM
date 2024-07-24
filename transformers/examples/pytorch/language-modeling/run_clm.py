@@ -535,14 +535,14 @@ def main():
         handlers=[logging.StreamHandler(sys.stdout)],
     )
     with training_args.main_process_first(desc="dataset map tokenization"):
-    tokenized_datasets = raw_datasets.map(
-        tokenize_function,
-        batched=True,
-        num_proc=data_args.preprocessing_num_workers,
-        remove_columns=column_names,
-        load_from_cache_file=not data_args.overwrite_cache,
-        desc="Running tokenizer on dataset",
-        )
+        tokenized_datasets = raw_datasets.map(
+            tokenize_function,
+            batched=True,
+            num_proc=data_args.preprocessing_num_workers,
+            remove_columns=column_names,
+            load_from_cache_file=not data_args.overwrite_cache,
+            desc="Running tokenizer on dataset",
+            )
 
     log_level = training_args.get_process_log_level()
     logger.setLevel(log_level)
