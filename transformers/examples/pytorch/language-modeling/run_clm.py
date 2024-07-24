@@ -501,19 +501,7 @@ def get_corpus_rocstory(data_args):
     print(len(counter), len(vocab_dict))
 
     return sentence_lst, vocab_dict
-def tokenize_function(examples):
-    sent_lst = examples['text']
-    tokenized_lst = [tokenizer.tokenize(sent) for sent in sent_lst]
-    tokenized_offset_mapping = [tokenizer.encode_plus(sent, return_offsets_mapping=True) for sent in sent_lst]
-    for tokens, offset_mapping in zip(tokenized_lst, tokenized_offset_mapping):
-        print(f"Tokens: {tokens}")
-        print(f"Offset Mapping: {offset_mapping}")
-    try:
-        parse_lst = list(parser.parse_sents(tokenized_lst))
-    except AssertionError as e:
-        print(f"Assertion Error: {e}")
-        raise e
-    return {'tokens': tokenized_lst}
+
 
 def main():
     # See all possible arguments in src/transformers/training_args.py
@@ -534,15 +522,7 @@ def main():
         datefmt="%m/%d/%Y %H:%M:%S",
         handlers=[logging.StreamHandler(sys.stdout)],
     )
-    with training_args.main_process_first(desc="dataset map tokenization"):
-        tokenized_datasets = raw_datasets.map(
-            tokenize_function,
-            batched=True,
-            num_proc=data_args.preprocessing_num_workers,
-            remove_columns=column_names,
-            load_from_cache_file=not data_args.overwrite_cache,
-            desc="Running tokenizer on dataset",
-            )
+    
 
     log_level = training_args.get_process_log_level()
     logger.setLevel(log_level)
