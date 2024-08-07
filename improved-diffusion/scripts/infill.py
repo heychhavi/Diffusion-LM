@@ -239,8 +239,7 @@ def main():
                                                0.1)
 
             elif args.eval_task_ == 'control_pos':
-                model_control = Classifier_POS.from_pretrained('predictability/diff_models/e2e-tgt-pos_e=6_b=10_m=bert-'
-                                                               'base-uncased_wikitext-103-raw-v1_101_wp_full_multi16_v2').cuda()
+                model_control = Classifier_POS.from_pretrained('/kaggle/working/Diffusion-LM/classifier_models/').cuda()
 
 
                 pos_vocab = {'START': 0, 'END': 1, 'UNK': 2, 'PAD': 3}
